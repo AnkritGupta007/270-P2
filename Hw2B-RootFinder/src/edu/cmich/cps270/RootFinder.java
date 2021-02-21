@@ -27,8 +27,7 @@ public class RootFinder {
 
 	public static void main(String[] args) throws Exception{
 		Func f = (double x) -> (Math.exp(x) - x -1.5); 
-
-		// #1. Print out f(1.5) making use of Func f.  
+ 
 		System.out.println("f evaluated at 1.5 "+ f.apply(1.5));
 
 		double zero = Double.NaN;
@@ -39,7 +38,7 @@ public class RootFinder {
 		zero = rf.runNewtonsMethod(0.7, fprime, 1e-20, 20);
 		System.out.println("The zero " + zero);
 
-		// #6. Display the intermediate results of a Newton method run.
+		//  Display the intermediate results of a Newton method run.
 		rf.printNewtonsMethodRunDetails();
 
 		System.out.println("---------------------------------------");
@@ -48,8 +47,16 @@ public class RootFinder {
 		zero = rf.runBisectionMethod(1e-5, 20);
 		System.out.println(zero);
 
-		// #6. Display the intermediate results of a bisection method run.
+		//  Display the intermediate results of a bisection method run.
 		rf.printBisectionMethodRunDetails();
+		
+		f = (double x) -> (Math.exp(x) - 1);
+		RootFinder rf1 = new RootFinder(-2.5, 2.5, f);
+		double zero1 = rf1.runSecantMethod(-2.5, 2.5, 1e-5, 50);
+		System.out.println("The solution for the secant method is "+ zero1);
+		
+	//  Display the intermediate results of a Secant method run.
+		rf.printSecantMethodRunDetails();
 
 	}
 
